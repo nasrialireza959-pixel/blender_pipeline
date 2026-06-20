@@ -46,12 +46,14 @@ class TripoSRGenerator(MeshGenerator):
         import torch
         from tsr.system import TSR  # noqa: مستلزم بودن ریپوی TripoSR در sys.path
 
-        device = self.settings.device if torch.cuda.is_available() else "cpu"
-        if device != self.settings.device:
-            print(
-                f"[هشدار] GPU با CUDA پیدا نشد؛ روی '{device}' اجرا می‌شود "
-                "(می‌تواند به‌شدت کندتر باشد یا برای رزولوشن بالا کافی نباشد)."
-            )
+        cuda_available = torch.cuda.is_available()
+        if self.settings.device == "auto":
+            device = "cuda" if cuda_available else "cpu"
+        elif self.settings.device == "cuda" and not cuda_available:
+            print("[هشدار] GPU با CUDA پیدا نشد؛ روی 'cpu' اجرا می‌شود (کندتر).")
+            device = "cpu"
+        else:
+            device = self.settings.device
 
         model = TSR.from_pretrained(
             self.settings.pretrained_repo,

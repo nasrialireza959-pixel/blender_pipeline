@@ -9,7 +9,7 @@ triposr:
   repo_path: external/TripoSR
   mesh_resolution: 256
   chunk_size: 8192
-  device: cuda                 # روی Colab بدون GPU به‌صورت خودکار به cpu سوییچ می‌شود (با هشدار)
+  device: auto                 # auto: GPU اگر موجود باشد، وگرنه CPU — می‌توان با --device override کرد
   foreground_ratio: 0.85
   remove_background: true
 

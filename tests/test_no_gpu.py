@@ -84,7 +84,7 @@ def test_load_config_from_default_yaml():
     config_path = Path(__file__).resolve().parent.parent / "configs" / "default.yaml"
     config = load_config(config_path)
     assert config.generator == "triposr"
-    assert config.triposr.device in ("cuda", "cpu")
+    assert config.triposr.device in ("cuda", "cpu", "auto")
 
 
 if __name__ == "__main__":

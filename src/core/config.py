@@ -21,7 +21,7 @@ class TripoSRSettings:
     repo_path: str = "external/TripoSR"
     mesh_resolution: int = 256
     chunk_size: int = 8192
-    device: str = "cuda"
+    device: str = "auto"
     foreground_ratio: float = 0.85
     remove_background: bool = True
 
@@ -59,8 +59,8 @@ class PipelineConfig:
         if self.triposr.mesh_resolution <= 0:
             raise ValueError("triposr.mesh_resolution باید عدد مثبت باشد")
 
-        if self.triposr.device not in ("cuda", "cpu"):
-            raise ValueError("triposr.device باید 'cuda' یا 'cpu' باشد")
+        if self.triposr.device not in ("cuda", "cpu", "auto"):
+            raise ValueError("triposr.device باید 'cuda'، 'cpu' یا 'auto' باشد")
 
         if not (0 < self.triposr.foreground_ratio <= 1):
             raise ValueError("triposr.foreground_ratio باید بین صفر و یک باشد")
@@ -93,7 +93,10 @@ def load_config(path: str | Path = "configs/default.yaml") -> PipelineConfig:
 
     bridge_data = data.get("blender_bridge", {})
     bridge_defaults = BlenderBridgeSettings().__dict__
-    bridge = BlenderBridgeSettings(**{**bridge_defaults, **bridge_data})
+    merged = {**bridge_defaults, **bridge_data}
+    if isinstance(merged.get("default_material_color"), list):
+        merged["default_material_color"] = tuple(merged["default_material_color"])
+    bridge = BlenderBridgeSettings(**merged)
 
     config = PipelineConfig(
         generator=data.get("generator", "triposr"),

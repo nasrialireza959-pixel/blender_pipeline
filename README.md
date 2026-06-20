@@ -1,5 +1,7 @@
 # Blender Pipeline (v2 — نسخه‌ی ترکیبی)
 
+[![CI](https://github.com/nasrialireza959-pixel/blender_pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/nasrialireza959-pixel/blender_pipeline/actions/workflows/ci.yml)
+
 تولید خودکار مدل سه‌بعدی از روی یک عکس و وارد کردن آن در بلندر، با
 ارکستراسیون توسط Claude (از طریق Claude Code یا Claude Desktop + blender-mcp).
 

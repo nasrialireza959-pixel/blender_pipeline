@@ -32,9 +32,22 @@ def main() -> None:
         "--config", type=str, default=str(PROJECT_ROOT / "configs" / "default.yaml")
     )
     parser.add_argument("--object-name", type=str, default="GeneratedMesh")
+    parser.add_argument(
+        "--device", type=str, choices=["auto", "cuda", "cpu"], default=None,
+        help="دستگاه اجرا — پیش‌فرض: مقدار config (auto)"
+    )
+    parser.add_argument(
+        "--resolution", type=int, default=None,
+        help="رزولوشن mesh (مثلاً 128 برای سریع، 512 برای با کیفیت)"
+    )
     args = parser.parse_args()
 
     config = load_config(args.config)
+    if args.device is not None:
+        config.triposr.device = args.device
+    if args.resolution is not None:
+        config.triposr.mesh_resolution = args.resolution
+
     pipeline = Pipeline(config)
 
     print(f"[اطلاع] شروع Job برای عکس: {args.image}")
