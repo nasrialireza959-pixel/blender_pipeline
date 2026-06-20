@@ -1,0 +1,22 @@
+generator: triposr
+
+output:
+  root_dir: outputs
+  mesh_format: obj
+
+triposr:
+  pretrained_repo: stabilityai/TripoSR
+  repo_path: external/TripoSR
+  mesh_resolution: 256
+  chunk_size: 8192
+  device: cuda                 # روی Colab بدون GPU به‌صورت خودکار به cpu سوییچ می‌شود (با هشدار)
+  foreground_ratio: 0.85
+  remove_background: true
+
+blender_bridge:
+  auto_apply_material: true
+  default_material_color: [0.8, 0.8, 0.8, 1.0]
+  scale_to_fit: true
+  target_size: 2.0
+  add_default_lighting: true
+  clear_scene_before_import: false   # عمداً false؛ تغییر صحنه‌ی کاربر بدون اجازه درست نیست

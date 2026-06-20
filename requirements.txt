@@ -1,0 +1,18 @@
+# --- لایه‌ی generators (تولید mesh از عکس) ---
+torch>=2.1.0
+torchvision>=0.16.0
+numpy>=1.24.0
+pillow>=10.0.0
+rembg>=2.0.50
+trimesh>=4.0.0
+omegaconf>=2.3.0
+
+# --- لایه‌ی core (کانفیگ، job) ---
+pyyaml>=6.0
+
+# --- تست ---
+pytest>=7.4.0
+
+# نکته: ریپوی رسمی TripoSR از PyPI نصب نمی‌شود؛ با scripts/setup.py کلون می‌شود.
+# blender-mcp هم جزو این requirements نیست — به‌صورت افزونه‌ی بلندر جدا نصب می‌شود
+# (دستورالعمل در docs/architecture.md).

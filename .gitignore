@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# مدل‌ها، وزن‌ها و ریپوهای خارجی کلون‌شده
+external/
+checkpoints/
+*.ckpt
+*.pth
+*.safetensors
+
+# خروجی‌های اجرا (هر Job، mesh، اسکریپت بلندر)
+outputs/
+*.obj
+*.glb
+*.gltf
+
+# فایل‌های بلندر
+*.blend1
+*.blend2
+
+# سیستم‌عامل
+.DS_Store
+Thumbs.db
+
+# تنظیمات شخصی
+.env
+configs/local_override.yaml
